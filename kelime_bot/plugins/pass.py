@@ -8,7 +8,7 @@ from kelime_bot import *
 
 
 
-@Client.on_message(filters.command("pass") & ~filters.private & ~filters.channel)
+@Client.on_message(filters.command("kec") & ~filters.private & ~filters.channel)
 async def passs(c:Client, m:Message):
     global oyun
     
@@ -19,9 +19,9 @@ async def passs(c:Client, m:Message):
         aktif = False
 
     if aktif:
-        if oyun[m.chat.id]["pass"] < 3:
-            oyun[m.chat.id]["pass"] += 1 
-            await c.send_message(m.chat.id,f"❗ Toplam 3 geçiş hakkınız var!\n➡️ Kelime Geçişi çıktı !\n✏️ Doğru kelime : **<code>{oyun[m.chat.id]['kelime']}</code>**")
+        if oyun[m.chat.id]["kec"] < 3:
+            oyun[m.chat.id]["kec"] += 1 
+            await c.send_message(m.chat.id,f"😑 Maksimum 3 keçmə haqqınız var!\n➡️ Söz uğurla keçildi !\n✏️ Düzgün Söz : **<code>{oyun[m.chat.id]['kelime']}</code>**")
             
             oyun[m.chat.id]["kelime"] = kelime_sec()
             oyun[m.chat.id]["aktif"] = True
@@ -34,17 +34,17 @@ async def passs(c:Client, m:Message):
                 kelime_list+= harf + " "
             
             text = f"""
-🎯 Raund : {oyun[m.chat.id]['round']}/60 
-📝 Kelime :   <code>{kelime_list}</code>
-💰 Kazandığınız Puan : 1
-🔎 İ𝗉𝗎𝖼𝗎 : 1. {oyun[m.chat.id]["kelime"][0]}
-✍🏻 𝖴𝗓𝗎𝗇𝗅uk: {int(len(kelime_list)/2)} 
+🎯 Raund : {oyun[m.chat.id]['round']}/20 
+📝 Tapılacaq Sözlər :   <code>{kelime_list}</code>
+💰 Qazandığın Xal : 1
+🔎 İlk hərf : 1. {oyun[m.chat.id]["kelime"][0]}
+✍🏻 𝖴𝗓𝗎𝗇𝗅uq: {int(len(kelime_list)/2)} 
 
-✏️ Karışık harflerden doğru kelimeyi bulun
+✏️ Qarışıq həriflərdən düzgün sözü tapın.
             """
             await c.send_message(m.chat.id, text)
             
         else:
-            await c.send_message(m.chat.id, f"<code>**❗ Geçiş Doğru Kaydedildi! </code> \n Oyunu durdurmak için yazıp /cancel durdurabilirsiniz✍🏻**")
+            await c.send_message(m.chat.id, f"<code>**❗ Keçiş Düzgün Qeydedildi! </code> \n Oyunu dayandırmaq üçün yazıb /cancel dayandıra bilərsiniz ✍🏻**")
     else:
-        await m.reply(f"❗ **Grubumuzda aktif oyun bulunmamaktadır!\n Yeni bir oyuna başlamak için /game yazabilirsiniz✍🏻**")
+        await m.reply(f"❗ **Qrupunuzda aktiv oyun oynanılır!\n Yeni bir oyuna başlamaq üçün /oyun yazabilərsiniz✍🏻**")
