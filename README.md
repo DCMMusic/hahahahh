@@ -1,4 +1,4 @@
-### Telegram Kelime Oyunu @Nevarevladim
+### Telegram Söz Tapma Botu. Fork edim deploy eləsən nəslin qucağımda hesab ele 
 📝
 ## Deploy to Heroku
 
